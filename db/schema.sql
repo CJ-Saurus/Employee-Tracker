@@ -6,3 +6,10 @@ CREATE TABLE departments (
 id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 department_name VARCHAR(100) NOT NULL
 );
+
+CREATE TABLE roles (
+id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+title VARCHAR(100),
+salary DECIMAL(10,2),
+department_id INT,
+);
