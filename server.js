@@ -2,6 +2,7 @@ const inquirer = require("inquirer");
 const mysql = require("mysql2");
 
 const connection = require('./db/connection.js');
+const PORT = process.env.PORT || 3306;
 
 connection.connect((err) => {
   if (err) throw err;
@@ -371,5 +372,5 @@ function addEmployee() {
     });
 
     app.listen(PORT, () => {
-        console.log(`Server listening on port ${PORT}`);
+        console.log(`Server running on port ${PORT}`);
       });
