@@ -5,14 +5,14 @@ const connection = mysql.createConnection({
     host: "localhost",
     port: 3306,
     user: "root",
-    password: "",
+    password: "WangPerez198679!",
     database: "employeeTracker_db",
 });
 
 
 connection.connect((err) => {
     if (err) throw err;
-    console.log("Connected to the database!");
+    console.log("Connected!");
     start();
 });
 
@@ -65,23 +65,18 @@ function start() {
 }
 
 function viewAllEmployees() {
-  const query = `SELECT 
-    employee.id, 
-    employee.first_name, 
-    employee.last_name, 
-    roles.title, 
-    department.department_name AS department, 
-    roles.salary, 
-    CONCAT(manager.first_name, ' ', manager.last_name) AS manager 
-    FROM employee 
-    LEFT JOIN roles ON employee.role_id = roles.id 
-    LEFT JOIN department ON roles.department_id = department.id 
-    LEFT JOIN employee manager ON manager.id = employee.manager_id;`;
-  connection.query(query, (err, data) => {
-    if (err) throw err;
-    console.table(data);
-    start();
-  });
+    const query = `
+    SELECT e.id, e.first_name, e.last_name, r.title, d.department_name, r.salary, CONCAT(m.first_name, ' ', m.last_name) AS manager_name
+    FROM employee e
+    LEFT JOIN roles r ON e.role_id = r.id
+    LEFT JOIN departments d ON r.department_id = d.id
+    LEFT JOIN employee m ON e.manager_id = m.id;
+    `;
+    connection.query(query, (err, res) => {
+        if (err) throw err;
+        console.table(res);
+        start();
+    });
 }
 
 function addEmployee() {
