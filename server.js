@@ -371,6 +371,3 @@ function addEmployee() {
         connection.end();
     });
 
-    app.listen(PORT, () => {
-        console.log(`Server running on port ${PORT}`);
-      });
