@@ -65,8 +65,8 @@ function start() {
 }
 
 function viewAllEmployees() {
-    const query = `
-    SELECT e.id, e.first_name, e.last_name, r.title, d.department_name, r.salary, CONCAT(m.first_name, ' ', m.last_name) AS manager_name
+    const query = 
+    `SELECT employee.id, employee.first_name, employee.last_name, roles.title, departments.department_name, roles.salary, CONCAT(m.first_name, ' ', m.last_name) AS manager_name
     FROM employee e
     LEFT JOIN roles r ON e.role_id = r.id
     LEFT JOIN departments d ON r.department_id = d.id
