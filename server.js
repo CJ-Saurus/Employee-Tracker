@@ -1,7 +1,7 @@
 const inquirer = require("inquirer");
 const mysql = require("mysql2");
 
-const connection = mysql.createConnection({
+const connection = require("./db/connection") ({
   host: "localhost",
   port: 3306,
   user: "root",
